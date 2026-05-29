@@ -993,14 +993,14 @@
               <div class="sim-field">
                 <label class="sim-label">pH min</label>
                 <input id="f-ph-min" type="number" class="sim-input"
-                       placeholder="e.g. 5.80" min="4.00" max="8.00" step="0.01">
-                <span class="sim-hint"><span class="sim-hint-icon">i</span> Range: 4.00 – 8.00 · max 2 decimal places</span>
+                       placeholder="ex.: 5,80" min="4.00" max="8.00" step="0.01">
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Faixa: 4,00 – 8,00 · máx 2 casas decimais</span>
               </div>
               <div class="sim-field">
                 <label class="sim-label">pH max</label>
                 <input id="f-ph-max" type="number" class="sim-input"
-                       placeholder="e.g. 6.20" min="4.00" max="8.00" step="0.01">
-                <span class="sim-hint"><span class="sim-hint-icon">i</span> Must be ≥ pH min · Range: 4.00 – 8.00</span>
+                       placeholder="ex.: 6,20" min="4.00" max="8.00" step="0.01">
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Deve ser ≥ pH min · Faixa: 4,00 – 8,00</span>
               </div>
             </div>
 
@@ -1536,7 +1536,7 @@
         var phMin = parseFloat(phMinRaw);
         var phMax = parseFloat(phMaxRaw);
         if (phMin < 4.0 || phMin > 8.0 || phMax < 4.0 || phMax > 8.0) {
-          alert('pH values must be between 4.00 and 8.00.');
+          alert('Os valores de pH devem estar entre 4,00 e 8,00.');
           return;
         }
         if (phMin > phMax) {
@@ -1604,7 +1604,7 @@
       { label: 'Challenging',  adj: '−6 sc/ha', css: 'ph-critical',   test: function(a) { return a < 5.0 || a > 6.5; } },
     ];
 
-    var PH_ZONES_TEXT = 'Favorable 5.5–6.5 · Intermediary 5.0–&lt;5.5 · Challenging &lt; 5.0 or &gt; 6.5';
+    var PH_ZONES_TEXT = 'Favorable 5,5–6,5 · Intermediary 5,0–&lt;5,5 · Challenging &lt; 5,0 ou &gt; 6,5';
 
     function updatePhIndicator() {
       var minEl = document.getElementById('f-ph-min');

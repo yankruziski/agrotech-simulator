@@ -8,9 +8,9 @@ No database. All model parameters are served via API so the frontend has zero ha
 ## Requirements
 
 - Python 3.11+
-- The two source CSVs must be present at:
-  - `Sprint 3/data/planting_summary_brazil.csv`
-  - `Sprint 2/payoffMatrix/harvest_summary_brazil.csv`
+- The pre-processed dataset `Sprint 3/data/simulator_dataset.csv` is already committed to the repository — no additional files needed to run the app.
+
+> The two raw source CSVs (`planting_summary_brazil.csv` and `harvest_summary_brazil.csv`) are only needed if you want to regenerate the dataset from scratch using `build_dataset.py`. They are not required to run the simulator.
 
 ---
 
@@ -62,7 +62,7 @@ Build/start are pre-configured:
 
 > Free tier sleeps after ~15 min idle; the first request then takes ~30 s to wake.
 
-**Live URL:** _add your Render URL here after the first deploy._
+**Live URL:** https://agrotech-simulator.onrender.com
 
 ---
 

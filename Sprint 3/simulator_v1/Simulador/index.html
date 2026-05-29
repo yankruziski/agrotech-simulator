@@ -1355,10 +1355,23 @@
         '<span class="calc-total-value">' + d.decision_tree.payoff_sc_ha + ' sc/ha</span>';
       formula.appendChild(total);
 
-      // Explanatory note
-      var txt = 'Payoff = D1 base + C1 + D2 + C2 adjustments. This decision-tree expected value ' +
-                '(' + d.decision_tree.payoff_sc_ha + ' sc/ha) anchors the Most Likely (P50) scenario; the ' +
-                'pessimistic (P25) and optimistic (P75) bands come from historical field records sharing the same classification.';
+      // Explanatory note — wording depends on whether P50 came from real data or fallback
+      var source = d.scenarios.most_likely.source;
+      var p50    = d.scenarios.most_likely.yield_sc_ha;
+      var payoff = d.decision_tree.payoff_sc_ha;
+      var txt;
+
+      if (source === 'historical_data') {
+        txt = 'Payoff = D1 base + C1 + D2 + C2 adjustments — this is the theoretical decision-tree result (' + payoff + ' sc/ha). ' +
+              'The Most Likely scenario (' + p50 + ' sc/ha) comes from the median (P50) of real historical field records ' +
+              'that share the same classification, and may differ from the formula. ' +
+              'Pessimistic (P25) and Optimistic (P75) are the 25th and 75th percentiles of those same records.';
+      } else {
+        txt = 'Payoff = D1 base + C1 + D2 + C2 adjustments. Fewer than 5 historical records matched this exact ' +
+              'configuration, so the scenarios were estimated using the decision-tree value (' + payoff + ' sc/ha) ' +
+              '± one standard deviation of the planting-window group as a fallback.';
+      }
+
       if (skipped.length) {
         txt += ' Note: ' + skipped.join(' and ') + ' adjustment' + (skipped.length > 1 ? 's were' : ' was') +
                ' not applied because the corresponding input was left blank.';

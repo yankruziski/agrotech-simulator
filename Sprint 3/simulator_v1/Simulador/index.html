@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroTech Precision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary:        #6B8C3E;
+      --color-secondary:      #8B9E3A;
+      --color-dark:           #1B2A3B;
+      --color-accent-blue:    #1B3A6B;
+      --color-light-bg:       #F5F5F5;
+      --color-section-bg:     #EEEEEE;
+      --color-border:         #DDDDDD;
+      --color-text-primary:   #1B2A3B;
+      --color-text-secondary: #666666;
+      --color-white:          #FFFFFF;
+      --color-required:       #C0392B;
+      --color-soil-accent:    #9E9E9E;
+      --color-climate-accent: #5B9BD5;
+      --color-soil-bg:        #F9F9F7;
+      --color-climate-bg:     #F0F5FB;
+      --color-insight-bg:     #EEF4FB;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-size-sm:    13px;
+      --font-size-base:  15px;
+      --font-size-lg:    18px;
+      --font-size-xl:    24px;
+      --font-size-step:  64px;
+      --spacing-section: 60px;
+      --card-shadow:     0 2px 8px rgba(0,0,0,0.08);
+      --border-radius:   4px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--color-text-primary);
+      background: var(--color-white);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-brand img { display: block; }
+
+    .nav-brand-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      font-weight: 500;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-link.nav-active {
+      color: var(--color-secondary);
+      border-bottom-color: var(--color-secondary);
+    }
+
+    /* ── PAGE CONTAINER ── */
+    #page-container { margin-top: 56px; }
+
+    /* ── HERO ── */
+    .hero-banner {
+      width: 100%;
+      height: 45vh;
+      overflow: hidden;
+      display: block;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ── HOME: FEATURE CARDS ── */
+    .feature-cards-section {
+      background: var(--color-white);
+      padding: 56px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-line {
+      width: 32px;
+      height: 3px;
+      background: var(--color-accent-blue);
+      flex-shrink: 0;
+    }
+
+    .icon-card   { width: 22px; height: 22px; color: var(--color-secondary); flex-shrink: 0; }
+    .icon-step   { width: 14px; height: 14px; color: var(--color-text-secondary); flex-shrink: 0; }
+    .icon-placeholder { width: 48px; height: 48px; color: var(--color-text-secondary); margin-bottom: 24px; }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-dark);
+    }
+
+    .card-text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── HOME: LIFECYCLE ── */
+    .lifecycle-section {
+      background: var(--color-section-bg);
+      padding: 56px 20px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--color-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      border-left: 4px solid var(--color-dark);
+      padding-left: 12px;
+      margin-bottom: 40px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .step-number-row { display: flex; align-items: center; margin-bottom: 16px; }
+    .step-number { font-size: var(--font-size-step); font-weight: 800; color: var(--color-border); line-height: 1; flex-shrink: 0; }
+    .step-divider { flex: 1; height: 1px; background: var(--color-border); margin-left: 12px; }
+    .step-label-row { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+    .step-label { font-size: 11px; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; color: var(--color-text-secondary); }
+    .step-text { font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.65; }
+
+    /* ── HOME: CTA ── */
+    .cta-section { background: var(--color-white); padding: 56px 20px; text-align: center; }
+    .cta-title { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-dark); margin-bottom: 24px; }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--color-secondary);
+      color: var(--color-white);
+      border: none; border-radius: 0;
+      padding: 14px 40px;
+      font-size: 12px; letter-spacing: 1.5px; font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: background 0.2s;
+    }
+
+    .cta-button:hover { background: var(--color-primary); }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: var(--color-section-bg);
+      border-top: 1px solid var(--color-border);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-text { font-size: 12px; color: var(--color-text-secondary); }
+
+    /* ════════════════════════════════════════
+       SIMULATOR PAGE
+    ════════════════════════════════════════ */
+
+    .sim-page {
+      background: var(--color-light-bg);
+      min-height: calc(100vh - 56px - 48px);
+      padding: 40px 20px 100px;
+    }
+
+    .sim-card {
+      max-width: 880px;
+      margin: 0 auto 32px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 32px;
+    }
+
+    .sim-card-scope    { border-top: 4px solid var(--color-accent-blue); }
+    .sim-card-planting { border-top: 4px solid var(--color-secondary); }
+    .sim-card-soil     { border-top: 4px solid var(--color-soil-accent);    background: var(--color-soil-bg); }
+    .sim-card-climate  { border-top: 4px solid var(--color-climate-accent); background: var(--color-climate-bg); }
+
+    .sim-card-title { font-size: 20px; font-weight: 600; color: var(--color-dark); margin-bottom: 16px; }
+
+    .sim-card-title-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+    .sim-card-title-wrap .sim-card-title { margin-bottom: 0; }
+    .sim-card-midot { font-size: 18px; color: var(--color-text-secondary); }
+    .sim-card-subtitle { font-size: 16px; font-weight: 400; font-style: italic; color: var(--color-text-secondary); }
+
+    .sim-divider { height: 1px; background: var(--color-border); margin-bottom: 24px; }
+
+    .sim-row { display: grid; gap: 20px; }
+    .sim-row-4 { grid-template-columns: repeat(4, 1fr); }
+    .sim-row-3 { grid-template-columns: repeat(3, 1fr); }
+    .sim-row-2 { grid-template-columns: repeat(2, 1fr); }
+    .sim-row-1 { grid-template-columns: 1fr; }
+    .sim-rows-wrap { display: flex; flex-direction: column; gap: 20px; }
+
+    .sim-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; display: block; }
+    .sim-label-required { color: var(--color-required); font-size: 11px; font-weight: 500; margin-left: 4px; }
+
+    .sim-input {
+      height: 40px; width: 100%;
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      padding: 0 12px;
+      font-size: 14px; font-family: var(--font-family); color: var(--color-text-primary);
+      background: var(--color-white);
+      outline: none; appearance: none; -webkit-appearance: none;
+    }
+
+    .sim-input::placeholder { color: var(--color-border); }
+
+    .sim-input:focus {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 2px rgba(139,158,58,0.15);
+    }
+
+    .sim-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+
+    .sim-hint {
+      display: block;
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      margin-top: 5px;
+      line-height: 1.4;
+      opacity: 0.8;
+    }
+
+    .sim-hint-icon {
+      display: inline-block;
+      width: 11px; height: 11px;
+      background: var(--color-text-secondary);
+      color: var(--color-white);
+      border-radius: 50%;
+      font-size: 8px; font-weight: 700;
+      text-align: center; line-height: 11px;
+      margin-right: 3px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { opacity: 1; }
+
+    /* ── pH live indicator ── */
+    .ph-indicator-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 14px;
+      background: var(--color-section-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .ph-indicator-avg { font-weight: 600; color: var(--color-text-primary); }
+
+    .ph-class-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 2px 10px; border-radius: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    }
+
+    .ph-adequate   { background: #E8F5D9; color: #4A7A1E; }
+    .ph-borderline { background: #FEF3CD; color: #9A6700; }
+    .ph-critical   { background: #FDECEA; color: #C0392B; }
+
+    .ph-indicator-adj {
+      margin-left: auto;
+      font-size: 11px; font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .season-toggle {
+      display: flex; height: 40px;
+      border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden;
+    }
+
+    .season-btn {
+      flex: 1; border: none; border-left: 1px solid var(--color-border);
+      background: var(--color-white); color: var(--color-text-secondary);
+      font-size: 13px; font-family: var(--font-family); cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .season-btn:first-child { border-left: none; }
+    .season-btn.active { background: var(--color-dark); color: var(--color-white); }
+
+    .sim-input-wrap { position: relative; display: flex; align-items: center; }
+    .sim-input-wrap > .sim-input { padding-right: 40px; }
+
+    .sim-input-icon {
+      position: absolute; right: 10px;
+      width: 18px; height: 18px;
+      color: var(--color-text-secondary);
+      pointer-events: none; flex-shrink: 0;
+    }
+
+    .sim-input-icon-red { color: var(--color-required); }
+
+    .fieldview-badge {
+      position: absolute; right: 8px;
+      height: 26px; padding: 0 8px;
+      background: var(--color-section-bg); border: 1px solid var(--color-border); border-radius: 3px;
+      color: var(--color-text-secondary); font-size: 10px; font-family: var(--font-family);
+      font-weight: 600; letter-spacing: 0.5px;
+      display: flex; align-items: center; cursor: default; white-space: nowrap;
+    }
+
+    .sim-input-wrap.has-badge > .sim-input { padding-right: 92px; }
+
+    /* ── Simulator fixed action bar ── */
+    #sim-action-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 64px;
+      background: var(--color-section-bg); border-top: 1px solid var(--color-border);
+      padding: 0 48px;
+      display: none; align-items: center; justify-content: space-between;
+      z-index: 999;
+    }
+
+    .sim-status { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--color-dark); }
+    .sim-status-icon { width: 20px; height: 20px; color: var(--color-secondary); flex-shrink: 0; }
+
+    .sim-run-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--color-secondary); color: var(--color-white);
+      border: none; border-radius: 0; padding: 14px 32px;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      font-family: var(--font-family); cursor: pointer; transition: background 0.2s;
+    }
+
+    .sim-run-btn:hover { background: var(--color-primary); }
+    .sim-run-icon { width: 16px; height: 16px; }
+
+    /* ════════════════════════════════════════
+       RESULTS / HISTORICAL PAGE
+    ════════════════════════════════════════ */
+
+    .results-page {
+      background: var(--color-light-bg);
+      min-height: calc(100vh - 56px - 48px);
+      padding: 40px 20px 120px;
+    }
+
+    .results-container { max-width: 880px; margin: 0 auto; }
+
+    /* ── Shared block spacing ── */
+    .results-block { margin-bottom: 32px; }
+
+    .results-section-title {
+      font-size: 14px; font-weight: 600; color: var(--color-dark); margin-bottom: 10px;
+    }
+
+    .results-section-divider-green { height: 2px; background: var(--color-secondary); margin-bottom: 20px; }
+    .results-divider { height: 1px; background: var(--color-border); margin-bottom: 16px; margin-top: 8px; }
+
+    /* ── Block 1: Summary header ── */
+    .results-header-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 24px 32px;
+      margin-bottom: 24px;
+    }
+
+    .results-header-title { font-size: 20px; font-weight: 700; color: var(--color-dark); margin-bottom: 20px; }
+
+    .results-meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    .results-meta-label {
+      display: block; font-size: 11px; letter-spacing: 1px;
+      color: var(--color-text-secondary); text-transform: uppercase; margin-bottom: 4px;
+    }
+
+    .results-meta-value { display: block; font-size: 14px; font-weight: 500; color: var(--color-dark); }
+
+    /* ── Block 2: Scenario cards ── */
+    .scenario-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; align-items: end;
+    }
+
+    .scenario-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      padding: 24px; text-align: center;
+    }
+
+    .scenario-pessimistic { border-top: 3px solid var(--color-required); }
+
+    .scenario-baseline {
+      border: 2px solid var(--color-secondary);
+      border-top: 3px solid var(--color-secondary);
+    }
+
+    .scenario-optimistic { border-top: 3px solid var(--color-accent-blue); }
+
+    .scenario-card-wrap { position: relative; padding-top: 18px; }
+
+    .scenario-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      background: var(--color-secondary); color: var(--color-white);
+      font-size: 10px; font-weight: 600; letter-spacing: 1px;
+      padding: 3px 12px; border-radius: 10px;
+      white-space: nowrap; z-index: 1;
+    }
+
+    .scenario-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+
+    .scenario-value { font-size: 36px; font-weight: 700; line-height: 1.1; }
+    .scenario-value-lg { font-size: 44px; }
+    .scenario-desc { font-size: 12px; color: var(--color-text-secondary); margin-top: 12px; line-height: 1.5; }
+
+    /* ── Block 3: Insight banner ── */
+    .insight-banner {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--color-insight-bg);
+      border-left: 4px solid var(--color-accent-blue); border-radius: var(--border-radius);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+
+    .insight-title { font-size: 13px; font-weight: 700; color: var(--color-accent-blue); margin-bottom: 8px; }
+    .insight-text  { font-size: 13px; color: var(--color-text-primary); line-height: 1.6; }
+
+    /* ── Block 4: Derived + Assumptions two-column ── */
+    .derived-assumptions-row { display: flex; gap: 24px; margin-bottom: 32px; }
+
+    .derived-variables-card {
+      flex: 55;
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 24px 28px;
+    }
+
+    .model-assumptions-card {
+      flex: 45;
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 24px 28px;
+    }
+
+    .metric-row {
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .metric-row:last-child { margin-bottom: 0; }
+
+    .metric-label { font-size: 13px; color: var(--color-text-primary); }
+    .metric-value { font-size: 16px; font-weight: 700; }
+    .metric-green { color: var(--color-secondary); }
+    .metric-blue  { color: var(--color-accent-blue); }
+
+    .assumptions-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .assumption-col-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      color: var(--color-text-secondary); text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .assumption-item {
+      display: flex; align-items: flex-start; gap: 6px;
+      margin-bottom: 8px; font-size: 12px;
+      color: var(--color-text-primary); line-height: 1.4;
+    }
+
+    .assumption-item:last-child { margin-bottom: 0; }
+
+    /* ── Block 5: Historical Table ── */
+    .results-table-wrap {
+      border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden;
+    }
+
+    .results-table { width: 100%; border-collapse: collapse; background: var(--color-white); }
+
+    .results-table th {
+      background: var(--color-section-bg); padding: 12px 16px; text-align: left;
+      font-size: 11px; letter-spacing: 1px; color: var(--color-text-secondary);
+      font-weight: 600; text-transform: uppercase;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .results-table td {
+      padding: 12px 16px; font-size: 13px; color: var(--color-text-primary);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .results-table tr:last-child td { border-bottom: none; }
+
+    /* ── Results fixed footer bar ── */
+    #results-footer-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--color-dark);
+      padding: 0 48px;
+      display: none; align-items: center; justify-content: space-between;
+      z-index: 999;
+    }
+
+    .results-copyright { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+    .results-footer-links { display: flex; gap: 20px; }
+
+    .results-footer-link {
+      font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); cursor: pointer; transition: color 0.15s;
+    }
+
+    .results-footer-link:hover { color: rgba(255,255,255,0.9); }
+
+    /* ── Floating Edit Configuration button ── */
+    #results-edit-btn {
+      position: fixed; bottom: 64px; right: 48px;
+      display: none; align-items: center; gap: 6px;
+      background: var(--color-secondary); color: var(--color-white);
+      border: none; border-radius: 0; padding: 12px 28px;
+      font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      font-family: var(--font-family); cursor: pointer; transition: background 0.2s;
+      z-index: 1000;
+    }
+
+    #results-edit-btn:hover { background: var(--color-primary); }
+    .results-edit-icon { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── Decision-tree calculation (supporting calculation) ── */
+    .calc-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 24px 28px;
+    }
+
+    .calc-formula { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+
+    .calc-term {
+      flex: 1 1 0; min-width: 92px;
+      border: 1px solid var(--color-border); border-radius: var(--border-radius);
+      padding: 12px 14px; text-align: center; background: var(--color-light-bg);
+    }
+
+    .calc-term-label {
+      display: block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--color-text-secondary); margin-bottom: 6px;
+    }
+
+    .calc-term-class { display: block; font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+    .calc-term-value { font-size: 22px; font-weight: 700; color: var(--color-dark); }
+
+    .calc-op {
+      display: flex; align-items: center; justify-content: center;
+      flex: 0 0 auto; font-size: 22px; font-weight: 700; color: var(--color-text-secondary);
+    }
+
+    .calc-total {
+      flex: 1 1 0; min-width: 110px;
+      border: 2px solid var(--color-secondary); border-radius: var(--border-radius);
+      padding: 12px 14px; text-align: center; background: #F4F8EC;
+    }
+
+    .calc-total-value { font-size: 26px; font-weight: 800; color: var(--color-secondary); }
+    .calc-note { font-size: 12px; color: var(--color-text-secondary); margin-top: 16px; line-height: 1.55; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE / MOBILE
+       Overrides only — desktop layout above is untouched.
+    ════════════════════════════════════════ */
+
+    /* ── Tablet & below ── */
+    @media (max-width: 768px) {
+      /* Navbar */
+      #navbar { padding: 0 16px; }
+      .nav-links { gap: 18px; }
+      .nav-link { font-size: 11px; letter-spacing: 0.5px; }
+
+      /* Hero */
+      .hero-banner { height: 32vh; }
+
+      /* Home sections */
+      .feature-cards-section,
+      .lifecycle-section,
+      .cta-section { padding: 40px 16px; }
+
+      .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .step-number { font-size: 48px; }
+      .section-label { margin-bottom: 28px; }
+      .cta-title { font-size: 20px; }
+
+      /* Simulator */
+      .sim-page { padding: 24px 14px 110px; }
+      .sim-card { padding: 22px 18px; margin-bottom: 20px; }
+      .sim-card-title { font-size: 18px; }
+      .sim-row-4,
+      .sim-row-3,
+      .sim-row-2 { grid-template-columns: 1fr; }
+      .ph-indicator-bar { flex-wrap: wrap; }
+      .ph-indicator-adj { margin-left: 0; }
+
+      /* Simulator action bar */
+      #sim-action-bar { padding: 0 14px; }
+      .sim-status { font-size: 12px; }
+      .sim-run-btn { padding: 12px 20px; font-size: 12px; letter-spacing: 0.5px; }
+
+      /* Results */
+      .results-page { padding: 28px 14px 120px; }
+      .results-header-card { padding: 20px 18px; }
+      .results-header-title { font-size: 18px; }
+      .results-meta-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+      .scenario-cards { grid-template-columns: 1fr; gap: 28px; }
+      .scenario-card { padding: 20px; }
+      .scenario-value { font-size: 32px; }
+      .scenario-value-lg { font-size: 38px; }
+
+      .derived-assumptions-row { flex-direction: column; gap: 16px; }
+      .derived-variables-card,
+      .model-assumptions-card { padding: 20px; }
+
+      /* Decision-tree calculation → stack vertically */
+      .calc-card { padding: 20px; }
+      .calc-formula { flex-direction: column; gap: 8px; }
+      .calc-op { font-size: 18px; }
+
+      /* Historical table → horizontal scroll instead of overflow clip */
+      .results-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .results-table { min-width: 560px; }
+
+      /* Results footer + floating button */
+      #results-footer-bar { padding: 0 14px; }
+      .results-copyright { font-size: 11px; }
+      #results-edit-btn { right: 16px; padding: 11px 20px; font-size: 11px; }
+    }
+
+    /* ── Small phones ── */
+    @media (max-width: 420px) {
+      .nav-brand-text { display: none; }
+      .nav-links { gap: 14px; }
+      .nav-link { font-size: 10px; }
+
+      .results-meta-grid { grid-template-columns: 1fr; }
+      .assumptions-cols { grid-template-columns: 1fr; gap: 14px; }
+
+      /* Free up room for the Run button: drop the status text */
+      .sim-status { display: none; }
+      #sim-action-bar { justify-content: flex-end; }
+      .sim-run-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-brand" data-route="#home">
+      <img src="assets/logoBayer.png" alt="Bayer" height="36">
+      <span class="nav-brand-text">AgroTech Precision</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" data-route="#home">HOME</a>
+      <a class="nav-link" data-route="#simulator">SIMULATOR</a>
+      <a class="nav-link" data-route="#historical">HISTORICAL</a>
+    </div>
+  </nav>
+
+  <div id="page-container">
+
+    <!-- ═══════════════ HOME PAGE ═══════════════ -->
+    <section id="home-page">
+
+      <div class="hero-banner">
+        <img src="assets/imageHome.jpg" alt="Farmer in agricultural field using tablet">
+      </div>
+
+      <div class="feature-cards-section">
+        <div class="container">
+          <div class="cards-grid">
+
+            <div class="feature-card">
+              <div class="card-line"></div>
+              <svg class="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+              </svg>
+              <h3 class="card-title">Regions</h3>
+              <p class="card-text">Simulator covers soybean and corn production in major regions: Minas Gerais, Paran&#225;, Mato Grosso do Sul, and Goi&#225;s, enabling region specific analysis and recommendations.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-line"></div>
+              <svg class="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+              <h3 class="card-title">Crops</h3>
+              <p class="card-text">Specialized simulation engine for corn and soybean cultivation, incorporating historical climate data and agronomic variables to drive planting decisions and maximize productivity potential.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-line"></div>
+              <svg class="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/>
+                <path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/>
+                <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/>
+                <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6z"/>
+              </svg>
+              <h3 class="card-title">Climate</h3>
+              <p class="card-text">Integration with external climate databases including INMET and NOAA historical series, enabling scenario analysis across multiple climatic conditions and risk profiles.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="lifecycle-section">
+        <div class="container">
+          <div class="section-label">SIMULATION LIFECYCLE</div>
+          <div class="steps-grid">
+
+            <div class="step">
+              <div class="step-number-row">
+                <span class="step-number">01</span><div class="step-divider"></div>
+              </div>
+              <div class="step-label-row">
+                <svg class="icon-step" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                  <path d="M12 11h4"/><path d="M12 16h4"/>
+                  <path d="M8 11h.01"/><path d="M8 16h.01"/>
+                </svg>
+                <span class="step-label">REVIEW</span>
+              </div>
+              <p class="step-text">Load your field data and historical performance records to establish baseline conditions and context for simulation analysis.</p>
+            </div>
+
+            <div class="step">
+              <div class="step-number-row">
+                <span class="step-number">02</span><div class="step-divider"></div>
+              </div>
+              <div class="step-label-row">
+                <svg class="icon-step" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+                <span class="step-label">RUN</span>
+              </div>
+              <p class="step-text">Execute simulation cycles that correlate agronomic variables with climate scenarios, generating multiple decision outcomes based on different risk profiles and uncertainty considerations.</p>
+            </div>
+
+            <div class="step">
+              <div class="step-number-row">
+                <span class="step-number">03</span><div class="step-divider"></div>
+              </div>
+              <div class="step-label-row">
+                <svg class="icon-step" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <line x1="10" y1="9" x2="8" y2="9"/>
+                </svg>
+                <span class="step-label">READ</span>
+              </div>
+              <p class="step-text">Interpret structured recommendations with auditable assumptions, delivered in practical formats that translate complex correlations into clear decision focused guidance for planting optimization.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2 class="cta-title">Ready to optimize your harvest?</h2>
+        <button class="cta-button" data-route="#simulator">CONFIGURE NEW SIMULATION</button>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════ SIMULATOR PAGE ═══════════════ -->
+    <section id="simulator-page" style="display:none;">
+      <div class="sim-page">
+
+        <div class="sim-card sim-card-scope">
+          <h2 class="sim-card-title">Scope selectors</h2>
+          <div class="sim-divider"></div>
+          <div class="sim-row sim-row-3">
+            <div class="sim-field">
+              <label class="sim-label">State</label>
+              <select id="f-state" class="sim-input sim-select">
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="PR">Paran&#225; (PR)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+                <option value="GO">Goi&#225;s (GO)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label class="sim-label">Crop</label>
+              <select id="f-crop" class="sim-input sim-select" disabled>
+                <option value="soybeans">Soybeans</option>
+              </select>
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> Model calibrated exclusively for soybeans</span>
+            </div>
+            <div class="sim-field">
+              <label class="sim-label">Crop year</label>
+              <input id="f-crop-year" type="text" class="sim-input" placeholder="e.g. 2024/2025">
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> For reference only — does not affect simulation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-card sim-card-planting">
+          <h2 class="sim-card-title">Planting inputs</h2>
+          <div class="sim-divider"></div>
+          <div class="sim-row sim-row-2">
+            <div class="sim-field">
+              <label class="sim-label">
+                Planting date
+                <span class="sim-label-required">&#9679; required</span>
+              </label>
+              <div class="sim-input-wrap">
+                <input id="f-planting-date" type="text" class="sim-input" placeholder="DD / MM / YYYY">
+                <svg class="sim-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> Sep–Oct = Early (+64 sc/ha base) · Nov = Normal (+60) · Dec–Mar = Late (+52)</span>
+            </div>
+            <div class="sim-field">
+              <label class="sim-label">Population (seeds/ha)</label>
+              <div class="sim-input-wrap has-badge">
+                <input id="f-population" type="number" class="sim-input" placeholder="e.g. 275000" min="1" max="2000000" step="1">
+                <span class="fieldview-badge">FIELDVIEW</span>
+              </div>
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> Ideal: 280,001 – 320,000 · Low ≤ 280,000 · High &gt; 320,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-card sim-card-soil">
+          <div class="sim-card-title-wrap">
+            <h2 class="sim-card-title">Soil profile</h2>
+            <span class="sim-card-midot">&middot;</span>
+            <span class="sim-card-subtitle">pre-filled from FieldView</span>
+          </div>
+          <div class="sim-divider"></div>
+          <div class="sim-rows-wrap">
+
+            <!-- Row 1: Soil order + texture -->
+            <div class="sim-row sim-row-2">
+              <div class="sim-field">
+                <label class="sim-label">Soil order</label>
+                <select id="f-soil-order" class="sim-input sim-select">
+                  <option value="">— Select soil order —</option>
+                  <optgroup label="Oxisols (most common for soybeans)">
+                    <option value="Latossolo Vermelho">Latossolo Vermelho (Oxisol — Red)</option>
+                    <option value="Latossolo Vermelho-Amarelo">Latossolo Vermelho-Amarelo (Oxisol — Red-Yellow)</option>
+                    <option value="Latossolo Amarelo">Latossolo Amarelo (Oxisol — Yellow)</option>
+                  </optgroup>
+                  <optgroup label="Ultisols">
+                    <option value="Argissolo Vermelho-Amarelo">Argissolo Vermelho-Amarelo (Ultisol)</option>
+                    <option value="Argissolo Vermelho">Argissolo Vermelho (Ultisol)</option>
+                  </optgroup>
+                  <optgroup label="Other orders">
+                    <option value="Nitossolo Vermelho">Nitossolo Vermelho (Alfisol)</option>
+                    <option value="Cambissolo Háplico">Cambissolo Háplico (Inceptisol)</option>
+                    <option value="Neossolo Quartzarênico">Neossolo Quartzarênico (Entisol — Sandy)</option>
+                    <option value="Gleissolo Háplico">Gleissolo Háplico (Entisol — Hydromorphic)</option>
+                    <option value="Chernossolo">Chernossolo (Mollisol)</option>
+                  </optgroup>
+                </select>
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Latossolos cover ~70% of Brazil's soybean-producing area</span>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">Soil texture</label>
+                <select id="f-soil-texture" class="sim-input sim-select">
+                  <option value="">— Select texture —</option>
+                  <optgroup label="Favorable · C1 +4 sc/ha">
+                    <option value="clay">Clay (&gt; 60% clay)</option>
+                    <option value="very clay">Very Clay (&gt; 70% clay)</option>
+                    <option value="medium-to-clay">Medium-to-Clay (40–60% clay)</option>
+                  </optgroup>
+                  <optgroup label="Intermediary · C1 ±0 sc/ha">
+                    <option value="clay-loam">Clay-Loam</option>
+                    <option value="loam">Loam</option>
+                    <option value="medium">Medium (20–35% clay)</option>
+                  </optgroup>
+                  <optgroup label="Challenging · C1 −6 sc/ha">
+                    <option value="sandy">Sandy (&lt; 15% clay)</option>
+                  </optgroup>
+                </select>
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Directly affects C1 adjustment in the decision tree</span>
+              </div>
+            </div>
+
+            <!-- Row 2: pH min + pH max + live class indicator -->
+            <div class="sim-row sim-row-2">
+              <div class="sim-field">
+                <label class="sim-label">pH min</label>
+                <input id="f-ph-min" type="number" class="sim-input"
+                       placeholder="e.g. 5.80" min="4.00" max="8.00" step="0.01">
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Range: 4.00 – 8.00 · max 2 decimal places</span>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">pH max</label>
+                <input id="f-ph-max" type="number" class="sim-input"
+                       placeholder="e.g. 6.20" min="4.00" max="8.00" step="0.01">
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Must be ≥ pH min · Range: 4.00 – 8.00</span>
+              </div>
+            </div>
+
+            <!-- pH live class indicator -->
+            <div id="ph-indicator-wrap" style="display:none;">
+              <div class="ph-indicator-bar">
+                <span>pH avg: <span id="ph-avg-value" class="ph-indicator-avg"></span></span>
+                <span id="ph-class-badge" class="ph-class-badge"></span>
+                <span id="ph-class-zones" style="font-size:11px;"></span>
+                <span id="ph-adj-value" class="ph-indicator-adj"></span>
+              </div>
+            </div>
+
+            <!-- Row 3: Drainage -->
+            <div class="sim-row sim-row-1">
+              <div class="sim-field">
+                <label class="sim-label">Drainage characteristics</label>
+                <select id="f-drainage" class="sim-input sim-select">
+                  <option value="">— Select drainage —</option>
+                  <option value="Well drained">Well drained — rapid water movement, no waterlogging</option>
+                  <option value="Moderately drained">Moderately drained — water removed slowly</option>
+                  <option value="Imperfectly drained">Imperfectly drained — wet for short periods</option>
+                  <option value="Poorly drained">Poorly drained — wet for long periods, risk of hypoxia</option>
+                </select>
+                <span class="sim-hint"><span class="sim-hint-icon">i</span> Soybeans are sensitive to waterlogging during flowering (R1–R3)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sim-card sim-card-climate">
+          <h2 class="sim-card-title">Climate inputs</h2>
+          <div class="sim-divider"></div>
+          <div class="sim-row sim-row-2">
+            <div class="sim-field">
+              <label class="sim-label">Expected rainfall</label>
+              <select id="f-rainfall" class="sim-input sim-select">
+                <option value="">— Select rainfall range —</option>
+                <option value="below-800">Below 800 mm — Insufficient risk</option>
+                <option value="800-1000">800 – 1,000 mm</option>
+                <option value="1000-1200">1,000 – 1,200 mm — Adequate</option>
+                <option value="1200-1400">1,200 – 1,400 mm — Optimal for soybeans</option>
+                <option value="1400-1600">1,400 – 1,600 mm</option>
+                <option value="above-1600">Above 1,600 mm — Excess / disease pressure risk</option>
+              </select>
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> Soybeans require 450–800 mm per cycle · Optimal season total: 1,200–1,400 mm</span>
+            </div>
+            <div class="sim-field">
+              <label class="sim-label">Avg temp</label>
+              <select id="f-avg-temp" class="sim-input sim-select">
+                <option value="">— Select range —</option>
+                <option value="below-18">Below 18°C (Cool)</option>
+                <option value="18-20">18 – 20°C</option>
+                <option value="20-22">20 – 22°C</option>
+                <option value="22-24">22 – 24°C</option>
+                <option value="24-26">24 – 26°C (Optimal)</option>
+                <option value="26-28">26 – 28°C</option>
+                <option value="28-30">28 – 30°C (Warm)</option>
+                <option value="above-30">Above 30°C (Hot)</option>
+              </select>
+              <span class="sim-hint"><span class="sim-hint-icon">i</span> Optimal for soybeans: 24 – 26°C</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ HISTORICAL / RESULTS PAGE ═══════════════ -->
+    <section id="historical-page" style="display:none;">
+      <div class="results-page">
+        <div class="results-container">
+
+          <!-- Block 1: Simulation Summary Header -->
+          <div class="results-header-card">
+            <h2 class="results-header-title">Simulation Results</h2>
+            <div class="results-meta-grid">
+              <div>
+                <span class="results-meta-label">FIELD ID</span>
+                <span class="results-meta-value" id="r-field-id"></span>
+              </div>
+              <div>
+                <span class="results-meta-label">CROP</span>
+                <span class="results-meta-value" id="r-crop"></span>
+              </div>
+              <div>
+                <span class="results-meta-label">SIMULATION DATE</span>
+                <span class="results-meta-value" id="r-sim-date"></span>
+              </div>
+              <div>
+                <span class="results-meta-label">TARGET POPULATION</span>
+                <span class="results-meta-value" id="r-target-pop"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 2: Productivity Scenarios -->
+          <div class="results-block">
+            <div class="results-section-title">Productivity Scenarios</div>
+            <div class="results-section-divider-green"></div>
+            <div class="scenario-cards">
+
+              <div class="scenario-card scenario-pessimistic">
+                <div class="scenario-label" style="color: var(--color-required);">PESSIMISTIC</div>
+                <div class="scenario-value" id="r-pessimistic-value" style="color: var(--color-required);"></div>
+                <p class="scenario-desc" id="r-pessimistic-desc"></p>
+              </div>
+
+              <div class="scenario-card-wrap">
+                <div class="scenario-badge">BASELINE</div>
+                <div class="scenario-card scenario-baseline">
+                  <div class="scenario-label" style="color: var(--color-secondary);">MOST LIKELY</div>
+                  <div class="scenario-value scenario-value-lg" id="r-baseline-value" style="color: var(--color-secondary);"></div>
+                  <p class="scenario-desc" id="r-baseline-desc"></p>
+                </div>
+              </div>
+
+              <div class="scenario-card scenario-optimistic">
+                <div class="scenario-label" style="color: var(--color-accent-blue);">OPTIMISTIC</div>
+                <div class="scenario-value" id="r-optimistic-value" style="color: var(--color-accent-blue);"></div>
+                <p class="scenario-desc" id="r-optimistic-desc"></p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Block 2.5: Decision-Tree Calculation (supporting calculation) -->
+          <div class="results-block">
+            <div class="results-section-title">Decision-Tree Calculation — How the baseline is derived</div>
+            <div class="results-section-divider-green"></div>
+            <div class="calc-card">
+              <div class="calc-formula" id="r-calc-formula"></div>
+              <p class="calc-note" id="r-calc-note"></p>
+            </div>
+          </div>
+
+          <!-- Block 3: Actionable Insight -->
+          <div class="insight-banner">
+            <!-- Lightbulb icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 style="color: var(--color-accent-blue); flex-shrink: 0; margin-top: 2px;" aria-hidden="true">
+              <path d="M9 18h6"/>
+              <path d="M10 22h4"/>
+              <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/>
+            </svg>
+            <div>
+              <div class="insight-title">Actionable Insight</div>
+              <p class="insight-text" id="r-insight"></p>
+            </div>
+          </div>
+
+          <!-- Block 4: Derived Variables + Model Assumptions -->
+          <div class="derived-assumptions-row">
+
+            <div class="derived-variables-card">
+              <div class="results-section-title">Derived Variables</div>
+              <div class="results-divider"></div>
+              <div class="metric-row">
+                <span class="metric-label">CV Seed Distribution</span>
+                <span class="metric-value metric-green" id="r-cv-seed"></span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Phenotypic Plasticity Index</span>
+                <span class="metric-value metric-blue" id="r-plasticity"></span>
+              </div>
+            </div>
+
+            <div class="model-assumptions-card">
+              <div class="results-section-title">Model Assumptions</div>
+              <div class="results-divider"></div>
+              <div class="assumptions-cols">
+                <div class="assumption-col">
+                  <div class="assumption-col-label">IMMUTABLE PREMISES</div>
+                  <div id="r-immutable-list"></div>
+                </div>
+                <div class="assumption-col">
+                  <div class="assumption-col-label">AUDITABLE METRICS</div>
+                  <div id="r-auditable-list"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Block 5: Historical Comparable Cases -->
+          <div class="results-block">
+            <div class="results-section-title">Historical Comparable Cases</div>
+            <div class="results-section-divider-green"></div>
+            <div class="results-table-wrap">
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th>CASE ID</th>
+                    <th>YEAR</th>
+                    <th>SIMILARITY</th>
+                    <th>ACTUAL YIELD</th>
+                    <th>KEY DIVERGENCE</th>
+                  </tr>
+                </thead>
+                <tbody id="r-cases-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer id="footer">
+    <span class="footer-text">AgroTech Precision &mdash; Bayer Crop Science Decision Agriculture Project</span>
+  </footer>
+
+  <!-- Simulator fixed action bar -->
+  <div id="sim-action-bar">
+    <div class="sim-status">
+      <svg class="sim-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      Ready to process simulation.
+    </div>
+    <button id="sim-run-btn" class="sim-run-btn">
+      RUN SIMULATION
+      <svg class="sim-run-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Results fixed footer bar -->
+  <div id="results-footer-bar">
+    <span class="results-copyright">&#169; 2026 Bayer Crop Science. Technical Status: Operational.</span>
+  </div>
+
+  <!-- Floating Edit Configuration button -->
+  <button id="results-edit-btn">
+    <!-- Pencil icon -->
+    <svg class="results-edit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+    </svg>
+    EDIT CONFIGURATION
+  </button>
+
+  <script>
+    /* ══════════════════════════════════════════════
+       STATE — populated by the API call
+    ══════════════════════════════════════════════ */
+    var simulationResult = null;
+    var lastSimInput     = {};
+
+    /* ══════════════════════════════════════════════
+       HELPERS
+    ══════════════════════════════════════════════ */
+    function makeCheckIcon(color) {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', '12'); svg.setAttribute('height', '12');
+      svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+      svg.setAttribute('stroke-width', '2');
+      svg.setAttribute('stroke-linecap', 'round'); svg.setAttribute('stroke-linejoin', 'round');
+      svg.style.cssText = 'color:' + color + ';flex-shrink:0;margin-top:1px;';
+      var p1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p1.setAttribute('d', 'M22 11.08V12a10 10 0 1 1-5.93-9.14');
+      var pl = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      pl.setAttribute('points', '22 4 12 14.01 9 11.01');
+      svg.appendChild(p1); svg.appendChild(pl);
+      return svg;
+    }
+
+    function makeDotIcon(color) {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', '12'); svg.setAttribute('height', '12');
+      svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', 'none');
+      svg.style.cssText = 'color:' + color + ';flex-shrink:0;margin-top:2px;';
+      var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', '12'); circle.setAttribute('cy', '12');
+      circle.setAttribute('r', '5'); circle.setAttribute('fill', 'currentColor');
+      svg.appendChild(circle);
+      return svg;
+    }
+
+    function makeAssumptionItem(iconFn, color, text) {
+      var wrap = document.createElement('div');
+      wrap.className = 'assumption-item';
+      wrap.appendChild(iconFn(color));
+      var span = document.createElement('span');
+      span.textContent = text;
+      wrap.appendChild(span);
+      return wrap;
+    }
+
+    /* ══════════════════════════════════════════════
+       DECISION-TREE CALCULATION (supporting calculation)
+       Renders: D1_base [+/−] C1 [+/−] D2 [+/−] C2 = payoff
+    ══════════════════════════════════════════════ */
+    function makeCalcTerm(label, className, valueText) {
+      var term = document.createElement('div');
+      term.className = 'calc-term';
+      term.innerHTML =
+        '<span class="calc-term-label">' + label + '</span>' +
+        '<span class="calc-term-class">' + (className || '—') + '</span>' +
+        '<span class="calc-term-value">' + valueText + '</span>';
+      return term;
+    }
+
+    function makeCalcOp(symbol) {
+      var op = document.createElement('div');
+      op.className = 'calc-op';
+      op.textContent = symbol;
+      return op;
+    }
+
+    function renderDecisionTreeCalc(d) {
+      var formula = document.getElementById('r-calc-formula');
+      var note    = document.getElementById('r-calc-note');
+      formula.innerHTML = '';
+
+      var comp = d.decision_tree.components;
+      var cls  = d.classification;
+
+      // First term: D1 base (always present)
+      formula.appendChild(makeCalcTerm('Planting · D1', cls.D1, String(comp.D1_base)));
+
+      // Adjustment terms — only render the ones that were actually applied (not null)
+      var adjustments = [
+        { key: 'C1_adj', label: 'Soil texture · C1', cls: cls.C1 },
+        { key: 'D2_adj', label: 'Seed pop. · D2',    cls: cls.D2 },
+        { key: 'C2_adj', label: 'Soil pH · C2',      cls: cls.C2 }
+      ];
+      var skipped = [];
+      adjustments.forEach(function(a) {
+        var v = comp[a.key];
+        if (v === null || v === undefined) { skipped.push(a.label.split(' · ')[1]); return; }
+        formula.appendChild(makeCalcOp(v < 0 ? '−' : '+'));
+        formula.appendChild(makeCalcTerm(a.label, a.cls, Math.abs(v).toString()));
+      });
+
+      // Equals + total
+      formula.appendChild(makeCalcOp('='));
+      var total = document.createElement('div');
+      total.className = 'calc-total';
+      total.innerHTML =
+        '<span class="calc-term-label">Expected value</span>' +
+        '<span class="calc-term-class">Baseline (P50)</span>' +
+        '<span class="calc-total-value">' + d.decision_tree.payoff_sc_ha + ' sc/ha</span>';
+      formula.appendChild(total);
+
+      // Explanatory note
+      var txt = 'Payoff = D1 base + C1 + D2 + C2 adjustments. This decision-tree expected value ' +
+                '(' + d.decision_tree.payoff_sc_ha + ' sc/ha) anchors the Most Likely (P50) scenario; the ' +
+                'pessimistic (P25) and optimistic (P75) bands come from historical field records sharing the same classification.';
+      if (skipped.length) {
+        txt += ' Note: ' + skipped.join(' and ') + ' adjustment' + (skipped.length > 1 ? 's were' : ' was') +
+               ' not applied because the corresponding input was left blank.';
+      }
+      note.textContent = txt;
+    }
+
+    /* ══════════════════════════════════════════════
+       RENDER RESULTS FROM simulationResult (API)
+    ══════════════════════════════════════════════ */
+    function renderSimulationResult() {
+      if (!simulationResult) return;
+      var d = simulationResult;
+
+      // Block 1: Header
+      document.getElementById('r-field-id').textContent  = lastSimInput.cropYear || '—';
+      document.getElementById('r-crop').textContent       = (lastSimInput.crop || '').charAt(0).toUpperCase() + (lastSimInput.crop || '').slice(1);
+      document.getElementById('r-sim-date').textContent   = lastSimInput.simDate || '—';
+      document.getElementById('r-target-pop').textContent = lastSimInput.population
+        ? Number(lastSimInput.population).toLocaleString() + ' seeds/ha' : '—';
+
+      // Block 2: Scenarios
+      document.getElementById('r-pessimistic-value').textContent = d.scenarios.pessimistic.yield_sc_ha + ' sc/ha';
+      document.getElementById('r-pessimistic-desc').textContent  = d.scenarios.pessimistic.description;
+      document.getElementById('r-baseline-value').textContent    = d.scenarios.most_likely.yield_sc_ha + ' sc/ha';
+      document.getElementById('r-baseline-desc').textContent     = d.scenarios.most_likely.description;
+      document.getElementById('r-optimistic-value').textContent  = d.scenarios.optimistic.yield_sc_ha + ' sc/ha';
+      document.getElementById('r-optimistic-desc').textContent   = d.scenarios.optimistic.description;
+
+      // Block 2.5: Decision-Tree Calculation
+      renderDecisionTreeCalc(d);
+
+      // Block 3: Narrative
+      document.getElementById('r-insight').textContent = d.narrative;
+
+      // Block 4: Derived Variables
+      document.getElementById('r-cv-seed').textContent   = d.cv_seed_pct != null ? d.cv_seed_pct + '%' : 'N/A';
+      document.getElementById('r-plasticity').textContent = d.plasticity_index != null ? d.plasticity_index : 'N/A';
+
+      // Block 4: Immutable Premises
+      var immutableList = document.getElementById('r-immutable-list');
+      immutableList.innerHTML = '';
+      (d.model_assumptions.immutable || []).forEach(function(item) {
+        immutableList.appendChild(makeAssumptionItem(makeCheckIcon, 'var(--color-secondary)', item));
+      });
+
+      // Block 4: Auditable Metrics (key-value pairs from model_assumptions.auditable)
+      var auditableList = document.getElementById('r-auditable-list');
+      auditableList.innerHTML = '';
+      var aud = d.model_assumptions.auditable;
+      var auditableEntries = [
+        ['D1 class', aud.D1_class],
+        ['C1 class', aud.C1_class || '—'],
+        ['D2 class', aud.D2_class || '—'],
+        ['C2 class', aud.C2_class || '—'],
+        ['Planting month', aud.planting_month],
+        ['Soil pH avg', aud.soil_ph_avg != null ? aud.soil_ph_avg : '—'],
+      ];
+      auditableEntries.forEach(function(entry) {
+        auditableList.appendChild(makeAssumptionItem(makeDotIcon, 'var(--color-accent-blue)', entry[0] + ': ' + entry[1]));
+      });
+
+      // Block 5: Historical Cases
+      var tbody = document.getElementById('r-cases-tbody');
+      tbody.innerHTML = '';
+      (d.comparable_cases || []).forEach(function(c, i) {
+        var pct = c.similarity_pct;
+        var simColor  = 'var(--color-text-primary)';
+        var simWeight = '400';
+        if (pct >= 90)      { simColor = 'var(--color-secondary)';   simWeight = '600'; }
+        else if (pct >= 75) { simColor = 'var(--color-accent-blue)'; simWeight = '600'; }
+        var tr = document.createElement('tr');
+        tr.style.background = i % 2 === 0 ? 'var(--color-white)' : 'var(--color-light-bg)';
+        var cells = [
+          c.case_id,
+          c.crop_year,
+          pct + '%',
+          c.observed_yield_sc_ha + ' sc/ha',
+          c.key_divergence
+        ];
+        cells.forEach(function(val, col) {
+          var td = document.createElement('td');
+          td.textContent = val;
+          if (col === 2) { td.style.color = simColor; td.style.fontWeight = simWeight; }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* ══════════════════════════════════════════════
+       SPA ROUTER
+    ══════════════════════════════════════════════ */
+    var router = {
+      pages: {
+        '#home':       'home-page',
+        '#simulator':  'simulator-page',
+        '#historical': 'historical-page'
+      },
+      init: function() {
+        window.addEventListener('hashchange', function() { router.render(); });
+        document.querySelectorAll('[data-route]').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.hash = link.dataset.route;
+          });
+        });
+        router.render();
+      },
+      render: function() {
+        var hash     = window.location.hash || '#home';
+        var activeId = router.pages[hash] || 'home-page';
+
+        document.querySelectorAll('[id$="-page"]').forEach(function(p) { p.style.display = 'none'; });
+        document.getElementById(activeId).style.display = 'block';
+
+        document.querySelectorAll('.nav-link[data-route]').forEach(function(link) {
+          link.classList.toggle('nav-active', link.dataset.route === hash);
+        });
+
+        // Simulator action bar
+        var simBar = document.getElementById('sim-action-bar');
+        simBar.style.display = activeId === 'simulator-page' ? 'flex' : 'none';
+
+        // Results footer bar + floating button
+        var resBar  = document.getElementById('results-footer-bar');
+        var resEdit = document.getElementById('results-edit-btn');
+        var isResults = activeId === 'historical-page';
+        resBar.style.display  = isResults ? 'flex' : 'none';
+        resEdit.style.display = isResults ? 'flex' : 'none';
+
+        if (isResults) renderSimulationResult();
+
+        window.scrollTo(0, 0);
+      }
+    };
+    router.init();
+
+    /* ── RUN SIMULATION ── */
+    document.getElementById('sim-run-btn').addEventListener('click', async function() {
+      var btn = this;
+
+      // Parse and convert planting date DD/MM/YYYY → YYYY-MM-DD
+      var raw = document.getElementById('f-planting-date').value.trim();
+      var plantingDate = raw;
+      if (/^\d{2}\/\d{2}\/\d{4}$/.test(raw)) {
+        var parts = raw.split('/');
+        plantingDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+      }
+      if (!plantingDate) {
+        alert('Planting date is required (DD/MM/YYYY).');
+        return;
+      }
+
+      var phMinRaw   = document.getElementById('f-ph-min').value;
+      var phMaxRaw   = document.getElementById('f-ph-max').value;
+      var popRaw     = document.getElementById('f-population').value;
+      var textureRaw = document.getElementById('f-soil-texture').value;
+
+      // Client-side pH validation
+      if (phMinRaw && phMaxRaw) {
+        var phMin = parseFloat(phMinRaw);
+        var phMax = parseFloat(phMaxRaw);
+        if (phMin < 4.0 || phMin > 8.0 || phMax < 4.0 || phMax > 8.0) {
+          alert('pH values must be between 4.00 and 8.00.');
+          return;
+        }
+        if (phMin > phMax) {
+          alert('pH min cannot be greater than pH max.');
+          return;
+        }
+      }
+
+      var payload = {
+        state:           document.getElementById('f-state').value,
+        crop:            'soybeans',
+        planting_date:   plantingDate,
+        season_code:     'Summer',
+        soil_texture:    textureRaw || null,
+        soil_ph_min:     phMinRaw ? parseFloat(phMinRaw) : null,
+        soil_ph_max:     phMaxRaw ? parseFloat(phMaxRaw) : null,
+        seed_population: popRaw   ? parseInt(popRaw, 10) : null
+      };
+
+      // Loading state
+      var originalHTML = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = 'Running…';
+
+      try {
+        var response = await fetch('/simulate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          var errBody = await response.json().catch(function() { return {}; });
+          throw new Error((errBody.detail && (typeof errBody.detail === 'string'
+            ? errBody.detail
+            : JSON.stringify(errBody.detail))) || 'Simulation failed (HTTP ' + response.status + ')');
+        }
+
+        simulationResult = await response.json();
+        lastSimInput = {
+          cropYear:   document.getElementById('f-crop-year').value || '—',
+          crop:       payload.crop,
+          population: payload.seed_population,
+          simDate:    new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+        };
+
+        window.location.hash = '#historical';
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+      }
+    });
+
+    /* ── EDIT CONFIGURATION button ── */
+    document.getElementById('results-edit-btn').addEventListener('click', function() {
+      window.location.hash = '#simulator';
+    });
+
+    /* ── pH live class indicator ── */
+    var PH_CLASSES = [
+      { label: 'Favorable',    adj: '+4 sc/ha', css: 'ph-adequate',   test: function(a) { return a >= 5.5 && a <= 6.5; } },
+      { label: 'Intermediary', adj: '±0 sc/ha', css: 'ph-borderline', test: function(a) { return a >= 5.0 && a < 5.5; } },
+      { label: 'Challenging',  adj: '−6 sc/ha', css: 'ph-critical',   test: function(a) { return a < 5.0 || a > 6.5; } },
+    ];
+
+    var PH_ZONES_TEXT = 'Favorable 5.5–6.5 · Intermediary 5.0–&lt;5.5 · Challenging &lt; 5.0 or &gt; 6.5';
+
+    function updatePhIndicator() {
+      var minEl = document.getElementById('f-ph-min');
+      var maxEl = document.getElementById('f-ph-max');
+      var wrap  = document.getElementById('ph-indicator-wrap');
+      var minV  = parseFloat(minEl.value);
+      var maxV  = parseFloat(maxEl.value);
+
+      if (isNaN(minV) || isNaN(maxV)) { wrap.style.display = 'none'; return; }
+
+      var avg = (minV + maxV) / 2;
+      var cls = PH_CLASSES.find(function(c) { return c.test(avg); }) || PH_CLASSES[2];
+
+      document.getElementById('ph-avg-value').textContent = avg.toFixed(2);
+      var badge = document.getElementById('ph-class-badge');
+      badge.textContent = cls.label;
+      badge.className   = 'ph-class-badge ' + cls.css;
+      document.getElementById('ph-class-zones').innerHTML = PH_ZONES_TEXT;
+      document.getElementById('ph-adj-value').textContent = 'C2 adj: ' + cls.adj;
+      wrap.style.display = 'block';
+    }
+
+    document.getElementById('f-ph-min').addEventListener('input', updatePhIndicator);
+    document.getElementById('f-ph-max').addEventListener('input', updatePhIndicator);
+  </script>
+
+</body>
+</html>

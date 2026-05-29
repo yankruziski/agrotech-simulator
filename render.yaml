@@ -1,0 +1,19 @@
+# Render Blueprint — deploys the Sprint 3 soybean yield simulator.
+# Docs: https://render.com/docs/blueprint-spec
+#
+# The app lives in "Sprint 3/simulator_v1" (note the space in the folder name,
+# hence the quoted cd). It reads the slim pre-built dataset at
+# "Sprint 3/data/simulator_dataset.csv" (~58 MB in RAM) so it fits the free tier.
+
+services:
+  - type: web
+    name: agrotech-simulator
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: 'pip install -r "Sprint 3/simulator_v1/requirements.txt"'
+    startCommand: 'cd "Sprint 3/simulator_v1" && uvicorn main:app --host 0.0.0.0 --port $PORT'
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+    healthCheckPath: /health

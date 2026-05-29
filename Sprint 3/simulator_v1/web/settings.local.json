@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"c:\\\\Users\\\\Inteli\\\\Downloads\\\\Simulador_S3\\\\Simulador\\\\index.html\")"
+    ]
+  }
+}
